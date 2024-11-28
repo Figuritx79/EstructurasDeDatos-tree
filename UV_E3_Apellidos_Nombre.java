@@ -1,10 +1,10 @@
 /* Rellenar: Nombres de los integrantes del equipo:
-1)
-2)
-3)
-4)
-5)
-6)
+1) Gonzalez Hernandez Juan Enrique
+2) Sanchez Saldaña Jose Manuel
+3) Ruiz Santos Orlando
+4) Pichardo Nava Johanna Montserrat 
+5) Martinez Ugalde Evelyn
+6) Ortega Chavarria Angel Ivan
 */
 public class UV_E3_Apellidos_Nombre {
     public static void main (String[] args){
