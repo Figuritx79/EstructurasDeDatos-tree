@@ -7,7 +7,7 @@
 6) Ortega Chavarria Angel Ivan
 */
 
-import org.w3c.dom.Node;
+// import org.w3c.dom.Node;
 
 public class UV_E3_Apellidos_Nombre {
     public static void main(String[] args) {
@@ -138,7 +138,6 @@ public class UV_E3_Apellidos_Nombre {
         }
         return false;
     }
-
 
 
     /*
