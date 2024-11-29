@@ -7,13 +7,13 @@
 6) Ortega Chavarria Angel Ivan
 */
 public class UV_E3_Apellidos_Nombre {
-    public static void main (String[] args){
-        // Primero llenamos el árbol  
-        
-        // TODO Prueba tus métodos en una función main con el conjunto de datos y 
-        // los siguientes valores: 42 y 33, tu programa debe reportar en consola 
+    public static void main(String[] args) {
+        // Primero llenamos el árbol
+
+        // TODO Prueba tus métodos en una función main con el conjunto de datos y
+        // los siguientes valores: 42 y 33, tu programa debe reportar en consola
         // si existe o no el número y que tipo de búsqueda se utilizo.
-        // Salida:  "42 se encuentra en el árbol, se uso DFS iterativo”
+        // Salida: "42 se encuentra en el árbol, se uso DFS iterativo"
 
         BinaryTree root = new BinaryTree();
         root.insert(12);
@@ -25,8 +25,22 @@ public class UV_E3_Apellidos_Nombre {
         root.insert(23);
         root.insert(42);
 
+        System.out.println(" \n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n \n");
+        
+        // Prueba de los métodos de búsqueda BFS iterativo(pepe)
+        int[] testValues2 = {42, 33};
+        for (int value : testValues2) {
+            if (searchBFSIterative(root.root, value)) {
+                System.out.println(value + " se encuentra en el arbol y se usa BFS de fotma iterativa   \n");
+            } else {
+                System.out.println(value + " no se encuentra en el arbol y  se usa BFS de forma iterativa ");
+            }
+        }
+
+        System.out.println(" \n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n \n");
+
         // Probar el método de searchBFSRecursive (ORLANDO)
-        int[] testValues = {42, 33};
+        int[] testValues = { 42, 33 };
         for (int value : testValues) {
             if (searchBFSRecursive(root.root, value)) {
                 System.out.println("-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O-O");
@@ -38,20 +52,41 @@ public class UV_E3_Apellidos_Nombre {
             }
         }
 
-    }        
+
+
+
+    }
 
     // Kikin
-    //Para este método usa una Stack personalizada
+    // Para este método usa una Stack personalizada
     public boolean searchDFSIterative(int data) {
-        //TODO
+        // TODO
         throw new UnsupportedOperationException("Aun no se implemnta este método, borra est throw cuando lo completes");
     }
 
     // Pepe
-    //Para este método usa una Queue personalizada
-    public boolean searchBFSIterative(int data) {
-        //TODO 
-        throw new UnsupportedOperationException("Aun no se implemnta este método, borra est throw cuando lo completes");
+    // Para este método usa una Queue personalizada
+    public static boolean searchBFSIterative(BinaryTree.Node root, int data) {
+        if (root == null) {
+            return false; 
+        }
+        Queue<BinaryTree.Node> queue = new Queue<>();
+        queue.offer(root); 
+        while (!queue.isEmpty()) {
+            BinaryTree.Node current = queue.poll();
+
+            if (current.data == data) {
+                return true; 
+            }
+            
+            if (current.left != null) {
+                queue.offer(current.left);
+            }
+            if (current.right != null) {
+                queue.offer(current.right);
+            }
+        }
+        return false; 
     }
 
     // Iván
@@ -61,22 +96,25 @@ public class UV_E3_Apellidos_Nombre {
 
     // Evelin
     public boolean searchDFSRecursive(int data) {
-        //TODO
+        // TODO
         throw new UnsupportedOperationException("Aun no se implemnta este método, borra est throw cuando lo completes");
     }
 
-    /*  Montse
-    public boolean searchBFS(int data) {
-        return searchBFSRecursive(data);
-    } */
+    /*
+     * Montse
+     * public boolean searchBFS(int data) {
+     * return searchBFSRecursive(data);
+     * }
+     */
 
     // Orlando
     public static boolean searchBFSRecursive(BinaryTree.Node root, int data) {
-        if (root == null) return false;
-    
+        if (root == null)
+            return false;
+
         Queue<BinaryTree.Node> queue = new Queue<>();
         queue.offer(root);
-    
+
         while (!queue.isEmpty()) {
             BinaryTree.Node current = queue.poll();
             if (current.data == data) {
@@ -91,5 +129,5 @@ public class UV_E3_Apellidos_Nombre {
         }
         return false;
     }
-    
+
 }
