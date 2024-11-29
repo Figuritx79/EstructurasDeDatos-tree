@@ -1,7 +1,7 @@
 public class BinaryTree{ 
 
     // Clase Nodo para representar cada nodo del árbol
-        private static class Node {
+        public static class Node {
             int data;         // Dato del nodo
             Node left;    // Referencia al hijo izquierdo
             Node right;      // Referencia al hijo derecho
