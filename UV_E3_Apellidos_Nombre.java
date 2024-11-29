@@ -2,12 +2,14 @@
 1) Gonzalez Hernandez Juan Enrique
 2) Sanchez Saldaña Jose Manuel
 3) Ruiz Santos Orlando
-4) Pichardo Nava Johanna Montserrat 
+4) Pichardo Nava Johanna Montserrat
 5) Martinez Ugalde Evelyn
 6) Ortega Chavarria Angel Ivan
 */
 
 // import org.w3c.dom.Node;
+
+import org.w3c.dom.Node;
 
 public class UV_E3_Apellidos_Nombre {
     public static void main(String[] args) {
@@ -28,11 +30,10 @@ public class UV_E3_Apellidos_Nombre {
         root.insert(23);
         root.insert(42);
 
-
         System.out.println(" \n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n \n");
-        
+
         // Prueba de los métodos de búsqueda BFS iterativo(pepe)
-        int[] testValues2 = {42, 33};
+        int[] testValues2 = { 42, 33 };
         for (int value : testValues2) {
             if (searchBFSIterative(root.root, value)) {
                 System.out.println(value + " se encuentra en el arbol y se usa BFS de fotma iterativa   \n");
@@ -43,9 +44,8 @@ public class UV_E3_Apellidos_Nombre {
 
         System.out.println(" \n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n \n");
 
-
         // Probar el metodo searchDFSRecursive (EVELYN)
-        int[] searchEve = {42, 33};
+        int[] searchEve = { 42, 33 };
         for (int value : searchEve) {
             if (searchBFSRecursive(root.root, value)) {
                 System.out.println("------------------------------------------------------------");
@@ -58,7 +58,19 @@ public class UV_E3_Apellidos_Nombre {
             }
         }
 
-
+        // Probar el metodo searchDFSIterative
+        int[] valores = { 42, 33 };
+        for (int valor : valores) {
+            if (searchBFSIterative(root.root, valor)) {
+                System.out.println("------------------------------------------------------------");
+                System.out.println(valor + " se encuentra en el árbol y se usó DFS iterative");
+                System.out.println("------------------------------------------------------------");
+            } else {
+                System.out.println("------------------------------------------------------------");
+                System.out.println(valor + " no se encuentra en el árbol y se usó DFS iterative");
+                System.out.println("------------------------------------------------------------");
+            }
+        }
 
         // Probar el método de searchBFSRecursive (ORLANDO)
         int[] testValues = { 42, 33 };
@@ -73,62 +85,47 @@ public class UV_E3_Apellidos_Nombre {
             }
         }
 
-
-
-
     }
 
     // Kikin
     // Para este método usa una Stack personalizada
-    public boolean searchDFSIterative(int data) {
-        // TODO
-        throw new UnsupportedOperationException("Aun no se implemnta este método, borra est throw cuando lo completes");
+    public boolean searchDFSIterative(BinaryTree.Node root, int data) {
+        if (root == null)
+            return false;
+
+        Stack<BinaryTree.Node> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            BinaryTree.Node current = stack.pop();
+
+            if (current.data == data)
+                return true;
+
+            if (current.right != null)
+                stack.push(current.right);
+            if (current.left != null)
+                stack.push(current.left);
+        }
+
+        return false;
     }
 
     // Pepe
     // Para este método usa una Queue personalizada
     public static boolean searchBFSIterative(BinaryTree.Node root, int data) {
         if (root == null) {
-            return false; 
+            return false;
         }
-        Queue<BinaryTree.Node> queue = new Queue<>();
-        queue.offer(root); 
-        while (!queue.isEmpty()) {
-            BinaryTree.Node current = queue.poll();
-
-            if (current.data == data) {
-                return true; 
-            }
-            
-            if (current.left != null) {
-                queue.offer(current.left);
-            }
-            if (current.right != null) {
-                queue.offer(current.right);
-            }
-        }
-        return false; 
-    }
-
-    /* Iván
-    public boolean searchDFS(int data) {
-        return searchDFSRecursive(data);
-    } */
-
-    // Evelyn
-    public static boolean searchDFSRecursive(BinaryTree.Node root, int data) {
-        if (root == null) return false;
-    
         Queue<BinaryTree.Node> queue = new Queue<>();
         queue.offer(root);
-    
         while (!queue.isEmpty()) {
             BinaryTree.Node current = queue.poll();
-    
+
             if (current.data == data) {
                 return true;
             }
-    
+
             if (current.left != null) {
                 queue.offer(current.left);
             }
@@ -139,6 +136,37 @@ public class UV_E3_Apellidos_Nombre {
         return false;
     }
 
+    /*
+     * Iván
+     * public boolean searchDFS(int data) {
+     * return searchDFSRecursive(data);
+     * }
+     */
+
+    // Evelyn
+    public static boolean searchDFSRecursive(BinaryTree.Node root, int data) {
+        if (root == null)
+            return false;
+
+        Queue<BinaryTree.Node> queue = new Queue<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            BinaryTree.Node current = queue.poll();
+
+            if (current.data == data) {
+                return true;
+            }
+
+            if (current.left != null) {
+                queue.offer(current.left);
+            }
+            if (current.right != null) {
+                queue.offer(current.right);
+            }
+        }
+        return false;
+    }
 
     /*
      * Montse
